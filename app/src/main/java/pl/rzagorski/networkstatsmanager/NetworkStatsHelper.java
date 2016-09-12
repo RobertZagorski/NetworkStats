@@ -111,7 +111,6 @@ public class NetworkStatsHelper {
         }
         NetworkStats.Bucket bucket = new NetworkStats.Bucket();
         networkStats.getNextBucket(bucket);
-        networkStats.getNextBucket(bucket);
         return bucket.getTxBytes();
     }
 

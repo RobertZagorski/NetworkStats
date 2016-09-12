@@ -116,30 +116,30 @@ public class MainActivity extends AppCompatActivity {
     private void fillNetworkStatsAll(NetworkStatsHelper networkStatsHelper) {
         NetworkStatsManagerAllUid.setText("-1");
         long mobileWifiRx = networkStatsHelper.getAllRxBytesMobile(this) + networkStatsHelper.getAllRxBytesWifi();
-        NetworkStatsManagerAllRx.setText(mobileWifiRx + " Bps");
+        NetworkStatsManagerAllRx.setText(mobileWifiRx + " B");
         long mobileWifiTx = networkStatsHelper.getAllRxBytesMobile(this) + networkStatsHelper.getAllRxBytesWifi();
-        NetworkStatsManagerAllTx.setText(mobileWifiTx + " Bps");
+        NetworkStatsManagerAllTx.setText(mobileWifiTx + " B");
     }
 
     @TargetApi(Build.VERSION_CODES.M)
     private void fillNetworkStatsPackage(int uid, NetworkStatsHelper networkStatsHelper) {
         NetworkStatsManagerPackageUid.setText(packageNameEd.getText().toString() + " :" + uid);
         long mobileWifiRx = networkStatsHelper.getPackageRxBytesMobile(this) + networkStatsHelper.getPackageRxBytesWifi();
-        NetworkStatsManagerPackageRx.setText(mobileWifiRx + " Bps");
+        NetworkStatsManagerPackageRx.setText(mobileWifiRx + " B");
         long mobileWifiTx = networkStatsHelper.getPackageRxBytesMobile(this) + networkStatsHelper.getPackageRxBytesWifi();
-        NetworkStatsManagerPackageTx.setText(mobileWifiTx + " Bps");
+        NetworkStatsManagerPackageTx.setText(mobileWifiTx + " B");
     }
 
     private void fillTrafficStatsAll() {
         TrafficStatsAllUid.setText("-1");
-        TrafficStatsAllRx.setText(TrafficStatsHelper.getAllRxBytes() + " Bps");
-        TrafficStatsAllTx.setText(TrafficStatsHelper.getAllTxBytes() + " Bps");
+        TrafficStatsAllRx.setText(TrafficStatsHelper.getAllRxBytes() + " B");
+        TrafficStatsAllTx.setText(TrafficStatsHelper.getAllTxBytes() + " B");
     }
 
     private void fillTrafficStatsPackage(int uid) {
         TrafficStatsPackageUid.setText(packageNameEd.getText().toString() + " :" + uid);
-        TrafficStatsPackageRx.setText(TrafficStatsHelper.getPackageRxBytes(uid) + " Bps");
-        TrafficStatsPackageTx.setText(TrafficStatsHelper.getPackageTxBytes(uid) + " Bps");
+        TrafficStatsPackageRx.setText(TrafficStatsHelper.getPackageRxBytes(uid) + " B");
+        TrafficStatsPackageTx.setText(TrafficStatsHelper.getPackageTxBytes(uid) + " B");
     }
 
     private boolean hasPermissionToReadPhoneStats() {
