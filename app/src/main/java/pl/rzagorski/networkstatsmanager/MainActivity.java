@@ -158,12 +158,29 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
         }
-        AppOpsManager appOps = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
+        final AppOpsManager appOps = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
         int mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
                 android.os.Process.myUid(), getPackageName());
         if (mode == AppOpsManager.MODE_ALLOWED) {
             return true;
         }
+        appOps.startWatchingMode(AppOpsManager.OPSTR_GET_USAGE_STATS,
+                getApplicationContext().getPackageName(),
+                new AppOpsManager.OnOpChangedListener() {
+                    @Override
+                    @TargetApi(Build.VERSION_CODES.M)
+                    public void onOpChanged(String op, String packageName) {
+                        int mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
+                                android.os.Process.myUid(), getPackageName());
+                        if (mode != AppOpsManager.MODE_ALLOWED) {
+                            return;
+                        }
+                        appOps.stopWatchingMode(this);
+                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                        getApplicationContext().startActivity(intent);
+                    }
+                });
         requestReadNetworkHistoryAccess();
         return false;
     }
