@@ -1,4 +1,4 @@
-package pl.rzagorski.networkstatsmanager;
+package pl.rzagorski.networkstatsmanager.utils;
 
 import android.annotation.TargetApi;
 import android.app.usage.NetworkStats;

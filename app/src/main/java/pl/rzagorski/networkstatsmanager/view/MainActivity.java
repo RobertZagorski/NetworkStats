@@ -1,4 +1,4 @@
-package pl.rzagorski.networkstatsmanager;
+package pl.rzagorski.networkstatsmanager.view;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -17,6 +17,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import pl.rzagorski.networkstatsmanager.R;
+import pl.rzagorski.networkstatsmanager.utils.NetworkStatsHelper;
+import pl.rzagorski.networkstatsmanager.utils.PackageManagerHelper;
+import pl.rzagorski.networkstatsmanager.utils.TrafficStatsHelper;
 
 public class MainActivity extends AppCompatActivity {
     private static final int READ_PHONE_STATE_REQUEST = 37;

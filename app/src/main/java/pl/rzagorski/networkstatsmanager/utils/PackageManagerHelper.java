@@ -1,9 +1,11 @@
-package pl.rzagorski.networkstatsmanager;
+package pl.rzagorski.networkstatsmanager.utils;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
+
+import pl.rzagorski.networkstatsmanager.view.MainActivity;
 
 /**
  * Created by Robert Zagórski on 2016-09-09.
