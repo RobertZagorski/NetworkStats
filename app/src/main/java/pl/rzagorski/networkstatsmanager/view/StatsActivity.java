@@ -23,8 +23,9 @@ import pl.rzagorski.networkstatsmanager.utils.NetworkStatsHelper;
 import pl.rzagorski.networkstatsmanager.utils.PackageManagerHelper;
 import pl.rzagorski.networkstatsmanager.utils.TrafficStatsHelper;
 
-public class MainActivity extends AppCompatActivity {
+public class StatsActivity extends AppCompatActivity {
     private static final int READ_PHONE_STATE_REQUEST = 37;
+    public static final String EXTRA_PACKAGE = "ExtraPackage";
 
     EditText packageNameEd;
     TextView TrafficStatsAllUid;
@@ -45,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         requestPermissions();
     }
 
@@ -52,23 +58,41 @@ public class MainActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.M)
     protected void onResume() {
         super.onResume();
-        if (!hasPermissionToReadPhoneStats()) {
-            requestPhoneStateStats();
+        if (!hasPermissions()) {
             return;
         }
         initTextViews();
-        fillData(packageNameEd.getText().toString());
+        checkIntent();
+    }
+
+    private void checkIntent() {
+        Intent intent = getIntent();
+        if (intent == null) {
+            return;
+        }
+        Bundle extras = intent.getExtras();
+        if (extras == null) {
+            return;
+        }
+        String packageName = extras.getString(EXTRA_PACKAGE);
+        if (packageName == null) {
+            return;
+        }
+        packageNameEd.setText(packageName);
     }
 
     private void requestPermissions() {
         if (!hasPermissionToReadNetworkHistory()) {
-            requestReadNetworkHistoryAccess();
             return;
         }
         if (!hasPermissionToReadPhoneStats()) {
             requestPhoneStateStats();
             return;
         }
+    }
+
+    private boolean hasPermissions() {
+        return hasPermissionToReadNetworkHistory() && hasPermissionToReadPhoneStats();
     }
 
     private void initTextViews() {
@@ -86,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (PackageManagerHelper.isPackage(MainActivity.this, s)) {
+                if (PackageManagerHelper.isPackage(StatsActivity.this, s)) {
                     fillData(s.toString());
                 }
             }
@@ -181,7 +205,10 @@ public class MainActivity extends AppCompatActivity {
                             return;
                         }
                         appOps.stopWatchingMode(this);
-                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                        Intent intent = new Intent(StatsActivity.this, StatsActivity.class);
+                        if (getIntent().getExtras() != null) {
+                            intent.putExtras(getIntent().getExtras());
+                        }
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         getApplicationContext().startActivity(intent);
                     }
@@ -199,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            fillData(packageNameEd.getText().toString());
+            //fillData(packageNameEd.getText().toString());
         }
     }
 }

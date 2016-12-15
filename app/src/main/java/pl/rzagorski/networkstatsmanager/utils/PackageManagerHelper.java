@@ -5,7 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
-import pl.rzagorski.networkstatsmanager.view.MainActivity;
+import pl.rzagorski.networkstatsmanager.view.StatsActivity;
 
 /**
  * Created by Robert Zagórski on 2016-09-09.
@@ -28,7 +28,7 @@ public class PackageManagerHelper {
         int uid = -1;
         try {
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_META_DATA);
-            Log.d(MainActivity.class.getSimpleName(), packageInfo.packageName);
+            Log.d(StatsActivity.class.getSimpleName(), packageInfo.packageName);
             uid = packageInfo.applicationInfo.uid;
         } catch (PackageManager.NameNotFoundException e) {
         }

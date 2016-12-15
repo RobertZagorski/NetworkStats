@@ -1,5 +1,6 @@
 package pl.rzagorski.networkstatsmanager.view;
 
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -14,12 +15,13 @@ import java.util.List;
 
 import pl.rzagorski.networkstatsmanager.R;
 import pl.rzagorski.networkstatsmanager.model.Package;
+import pl.rzagorski.networkstatsmanager.utils.OnPackageClickListener;
 
 /**
  * Created by Robert Zagórski on 2016-12-14.
  */
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity implements OnPackageClickListener {
     RecyclerView recyclerView;
 
     @Override
@@ -29,7 +31,7 @@ public class ListActivity extends AppCompatActivity {
         List<Package> packageList = getPackagesData();
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new PackageAdapter(packageList));
+        recyclerView.setAdapter(new PackageAdapter(packageList, this));
     }
 
     private List<Package> getPackagesData() {
@@ -56,5 +58,12 @@ public class ListActivity extends AppCompatActivity {
             }
         }
         return packageList;
+    }
+
+    @Override
+    public void onClick(Package packageItem) {
+        Intent intent = new Intent(ListActivity.this, StatsActivity.class);
+        intent.putExtra(StatsActivity.EXTRA_PACKAGE, packageItem.getPackageName());
+        startActivity(intent);
     }
 }

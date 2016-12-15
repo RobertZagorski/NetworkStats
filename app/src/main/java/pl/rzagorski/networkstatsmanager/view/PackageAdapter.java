@@ -13,6 +13,7 @@ import java.util.List;
 
 import pl.rzagorski.networkstatsmanager.R;
 import pl.rzagorski.networkstatsmanager.model.Package;
+import pl.rzagorski.networkstatsmanager.utils.OnPackageClickListener;
 
 /**
  * Created by Robert Zagórski on 2016-12-14.
@@ -20,9 +21,11 @@ import pl.rzagorski.networkstatsmanager.model.Package;
 
 public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageViewHolder> {
     List<Package> mPackageList;
+    OnPackageClickListener mListener;
 
-    public PackageAdapter(List<Package> packageList) {
+    public PackageAdapter(List<Package> packageList, OnPackageClickListener listener) {
         mPackageList = packageList;
+        mListener = listener;
     }
 
     @Override
@@ -49,7 +52,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageV
         return mPackageList.size();
     }
 
-    public static class PackageViewHolder extends RecyclerView.ViewHolder {
+    public class PackageViewHolder extends RecyclerView.ViewHolder {
         Context context;
         TextView name;
         TextView packageName;
@@ -64,6 +67,12 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageV
             packageName = (TextView) itemView.findViewById(R.id.package_name);
             version = (TextView) itemView.findViewById(R.id.version);
             icon = (AppCompatImageView) itemView.findViewById(R.id.icon);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    PackageAdapter.this.mListener.onClick(mPackageList.get(getAdapterPosition()));
+                }
+            });
         }
     }
 }
