@@ -11,8 +11,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
@@ -26,6 +29,10 @@ import pl.rzagorski.networkstatsmanager.utils.TrafficStatsHelper;
 public class StatsActivity extends AppCompatActivity {
     private static final int READ_PHONE_STATE_REQUEST = 37;
     public static final String EXTRA_PACKAGE = "ExtraPackage";
+
+    AppCompatImageView ivIcon;
+    Toolbar toolbar;
+    CollapsingToolbarLayout collapsingToolbarLayout;
 
     EditText packageNameEd;
     TextView TrafficStatsAllUid;
@@ -45,7 +52,11 @@ public class StatsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_stats);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ivIcon = (AppCompatImageView) findViewById(R.id.avatar);
     }
 
     @Override
@@ -77,6 +88,16 @@ public class StatsActivity extends AppCompatActivity {
         String packageName = extras.getString(EXTRA_PACKAGE);
         if (packageName == null) {
             return;
+        }
+        try {
+            ivIcon.setImageDrawable(getPackageManager().getApplicationIcon(packageName));
+            toolbar.setTitle(getPackageManager().getApplicationLabel(
+                    getPackageManager().getApplicationInfo(
+                            packageName, PackageManager.GET_META_DATA)));
+            toolbar.setSubtitle(packageName + ":" + PackageManagerHelper.getPackageUid(this, packageName));
+            setSupportActionBar(toolbar);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
         }
         packageNameEd.setText(packageName);
     }
