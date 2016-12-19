@@ -64,7 +64,6 @@
                 android:id="@+id/divider"
                 android:layout_width="1px"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/package_name_edit_text"
                 android:layout_centerHorizontal="true"
                 android:background="@android:color/black"/>
 
@@ -75,7 +74,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@id/package_name_edit_text"
                 android:layout_marginTop="20dp"
                 android:layout_toLeftOf="@id/divider"
                 android:gravity="center_horizontal"
@@ -90,7 +88,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_below="@id/package_name_edit_text"
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@id/divider"
                 android:gravity="center_horizontal"
@@ -99,48 +96,15 @@
                 android:text="Network Stats Manager"/>
 
             <TextView
-                android:id="@+id/traffic_stats_all_title"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@id/textView4"
-                android:layout_toLeftOf="@id/divider"
-                android:padding="8dp"
-                android:text="All uid"/>
-
-            <TextView
-                android:id="@+id/network_stats_manager_all_title"
+                android:id="@+id/network_stats_manager_all_Rx_title"
                 style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_below="@id/textView4"
+                android:layout_below="@id/textView2"
                 android:layout_toRightOf="@id/divider"
                 android:padding="8dp"
-                android:text="All uid"/>
-
-            <TextView
-                android:id="@+id/traffic_stats_all_uid"
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@id/traffic_stats_all_title"
-                android:layout_toLeftOf="@id/divider"
-                android:padding="8dp"
-                android:text="All uid"/>
-
-            <TextView
-                android:id="@+id/network_stats_manager_all_uid"
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/network_stats_manager_all_title"
-                android:layout_toRightOf="@id/divider"
-                android:padding="8dp"
-                android:text="Not implemented"/>
+                android:text="Rx"/>
 
             <TextView
                 android:id="@+id/traffic_stats_all_Rx_title"
@@ -148,19 +112,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@id/traffic_stats_all_uid"
-                android:layout_toLeftOf="@id/divider"
-                android:padding="8dp"
-                android:text="Rx"/>
-
-            <TextView
-                android:id="@+id/network_stats_manager_all_Rx_title"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/network_stats_manager_all_uid"
-                android:layout_toRightOf="@id/divider"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView4"
                 android:padding="8dp"
                 android:text="Rx"/>
 
@@ -185,7 +138,6 @@
                 android:layout_toRightOf="@id/divider"
                 android:padding="8dp"
                 android:text="Not implemented"/>
-
 
             <TextView
                 android:id="@+id/textView"
@@ -358,17 +310,6 @@
                 android:layout_toRightOf="@+id/divider"
                 android:padding="8dp"
                 android:text="Not implemented"/>
-
-            <EditText
-                android:id="@+id/package_name_edit_text"
-                style="@style/TextAppearance.AppCompat.Headline"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:hint="Enter package name"
-                android:text="com.android.browser"/>
 
         </RelativeLayout>
 

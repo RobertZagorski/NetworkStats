@@ -10,15 +10,11 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.EditText;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import pl.rzagorski.networkstatsmanager.R;
@@ -32,20 +28,14 @@ public class StatsActivity extends AppCompatActivity {
 
     AppCompatImageView ivIcon;
     Toolbar toolbar;
-    CollapsingToolbarLayout collapsingToolbarLayout;
 
-    EditText packageNameEd;
-    TextView TrafficStatsAllUid;
     TextView TrafficStatsAllRx;
     TextView TrafficStatsAllTx;
-    TextView TrafficStatsPackageUid;
     TextView TrafficStatsPackageRx;
     TextView TrafficStatsPackageTx;
 
-    TextView NetworkStatsManagerAllUid;
     TextView NetworkStatsManagerAllRx;
     TextView NetworkStatsManagerAllTx;
-    TextView NetworkStatsManagerPackageUid;
     TextView NetworkStatsManagerPackageRx;
     TextView NetworkStatsManagerPackageTx;
 
@@ -76,6 +66,15 @@ public class StatsActivity extends AppCompatActivity {
         checkIntent();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void checkIntent() {
         Intent intent = getIntent();
         if (intent == null) {
@@ -99,7 +98,10 @@ public class StatsActivity extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        packageNameEd.setText(packageName);
+        if (!PackageManagerHelper.isPackage(StatsActivity.this, packageName)) {
+            return;
+        }
+        fillData(packageName);
     }
 
     private void requestPermissions() {
@@ -117,35 +119,12 @@ public class StatsActivity extends AppCompatActivity {
     }
 
     private void initTextViews() {
-        packageNameEd = (EditText) findViewById(R.id.package_name_edit_text);
-        packageNameEd.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (PackageManagerHelper.isPackage(StatsActivity.this, s)) {
-                    fillData(s.toString());
-                }
-            }
-        });
-        TrafficStatsAllUid = (TextView) findViewById(R.id.traffic_stats_all_uid);
         TrafficStatsAllRx = (TextView) findViewById(R.id.traffic_stats_all_rx);
         TrafficStatsAllTx = (TextView) findViewById(R.id.textView3);
-        TrafficStatsPackageUid = (TextView) findViewById(R.id.textView14);
         TrafficStatsPackageRx = (TextView) findViewById(R.id.textView16);
         TrafficStatsPackageTx = (TextView) findViewById(R.id.textView18);
-        NetworkStatsManagerAllUid = (TextView) findViewById(R.id.network_stats_manager_all_uid);
         NetworkStatsManagerAllRx = (TextView) findViewById(R.id.network_stats_manager_all_rx);
         NetworkStatsManagerAllTx = (TextView) findViewById(R.id.textView6);
-        NetworkStatsManagerPackageUid = (TextView) findViewById(R.id.textView7);
         NetworkStatsManagerPackageRx = (TextView) findViewById(R.id.textView10);
         NetworkStatsManagerPackageTx = (TextView) findViewById(R.id.textView19);
     }
@@ -164,7 +143,6 @@ public class StatsActivity extends AppCompatActivity {
 
     @TargetApi(Build.VERSION_CODES.M)
     private void fillNetworkStatsAll(NetworkStatsHelper networkStatsHelper) {
-        NetworkStatsManagerAllUid.setText("-1");
         long mobileWifiRx = networkStatsHelper.getAllRxBytesMobile(this) + networkStatsHelper.getAllRxBytesWifi();
         NetworkStatsManagerAllRx.setText(mobileWifiRx + " B");
         long mobileWifiTx = networkStatsHelper.getAllRxBytesMobile(this) + networkStatsHelper.getAllRxBytesWifi();
@@ -173,7 +151,6 @@ public class StatsActivity extends AppCompatActivity {
 
     @TargetApi(Build.VERSION_CODES.M)
     private void fillNetworkStatsPackage(int uid, NetworkStatsHelper networkStatsHelper) {
-        NetworkStatsManagerPackageUid.setText(packageNameEd.getText().toString() + " :" + uid);
         long mobileWifiRx = networkStatsHelper.getPackageRxBytesMobile(this) + networkStatsHelper.getPackageRxBytesWifi();
         NetworkStatsManagerPackageRx.setText(mobileWifiRx + " B");
         long mobileWifiTx = networkStatsHelper.getPackageRxBytesMobile(this) + networkStatsHelper.getPackageRxBytesWifi();
@@ -181,13 +158,11 @@ public class StatsActivity extends AppCompatActivity {
     }
 
     private void fillTrafficStatsAll() {
-        TrafficStatsAllUid.setText("-1");
         TrafficStatsAllRx.setText(TrafficStatsHelper.getAllRxBytes() + " B");
         TrafficStatsAllTx.setText(TrafficStatsHelper.getAllTxBytes() + " B");
     }
 
     private void fillTrafficStatsPackage(int uid) {
-        TrafficStatsPackageUid.setText(packageNameEd.getText().toString() + " :" + uid);
         TrafficStatsPackageRx.setText(TrafficStatsHelper.getPackageRxBytes(uid) + " B");
         TrafficStatsPackageTx.setText(TrafficStatsHelper.getPackageTxBytes(uid) + " B");
     }
@@ -241,13 +216,5 @@ public class StatsActivity extends AppCompatActivity {
     private void requestReadNetworkHistoryAccess() {
         Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
         startActivity(intent);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            //fillData(packageNameEd.getText().toString());
-        }
     }
 }
