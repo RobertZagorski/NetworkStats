@@ -29,15 +29,15 @@ public class StatsActivity extends AppCompatActivity {
     AppCompatImageView ivIcon;
     Toolbar toolbar;
 
-    TextView TrafficStatsAllRx;
-    TextView TrafficStatsAllTx;
-    TextView TrafficStatsPackageRx;
-    TextView TrafficStatsPackageTx;
+    TextView trafficStatsAllRx;
+    TextView trafficStatsAllTx;
+    TextView trafficStatsPackageRx;
+    TextView trafficStatsPackageTx;
 
-    TextView NetworkStatsManagerAllRx;
-    TextView NetworkStatsManagerAllTx;
-    TextView NetworkStatsManagerPackageRx;
-    TextView NetworkStatsManagerPackageTx;
+    TextView networkStatsManagerAllRx;
+    TextView networkStatsManagerAllTx;
+    TextView networkStatsManagerPackageRx;
+    TextView networkStatsManagerPackageTx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,14 +119,14 @@ public class StatsActivity extends AppCompatActivity {
     }
 
     private void initTextViews() {
-        TrafficStatsAllRx = (TextView) findViewById(R.id.traffic_stats_all_rx);
-        TrafficStatsAllTx = (TextView) findViewById(R.id.textView3);
-        TrafficStatsPackageRx = (TextView) findViewById(R.id.textView16);
-        TrafficStatsPackageTx = (TextView) findViewById(R.id.textView18);
-        NetworkStatsManagerAllRx = (TextView) findViewById(R.id.network_stats_manager_all_rx);
-        NetworkStatsManagerAllTx = (TextView) findViewById(R.id.textView6);
-        NetworkStatsManagerPackageRx = (TextView) findViewById(R.id.textView10);
-        NetworkStatsManagerPackageTx = (TextView) findViewById(R.id.textView19);
+        trafficStatsAllRx = (TextView) findViewById(R.id.traffic_stats_all_rx_value);
+        trafficStatsAllTx = (TextView) findViewById(R.id.traffic_stats_all_tx_value);
+        trafficStatsPackageRx = (TextView) findViewById(R.id.traffic_stats_package_rx_value);
+        trafficStatsPackageTx = (TextView) findViewById(R.id.traffic_stats_package_tx_value);
+        networkStatsManagerAllRx = (TextView) findViewById(R.id.network_stats_all_rx_value);
+        networkStatsManagerAllTx = (TextView) findViewById(R.id.network_stats_all_tx_value);
+        networkStatsManagerPackageRx = (TextView) findViewById(R.id.network_stats_package_rx_value);
+        networkStatsManagerPackageTx = (TextView) findViewById(R.id.network_stats_package_tx_value);
     }
 
     private void fillData(String packageName) {
@@ -144,27 +144,27 @@ public class StatsActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.M)
     private void fillNetworkStatsAll(NetworkStatsHelper networkStatsHelper) {
         long mobileWifiRx = networkStatsHelper.getAllRxBytesMobile(this) + networkStatsHelper.getAllRxBytesWifi();
-        NetworkStatsManagerAllRx.setText(mobileWifiRx + " B");
+        networkStatsManagerAllRx.setText(mobileWifiRx + " B");
         long mobileWifiTx = networkStatsHelper.getAllRxBytesMobile(this) + networkStatsHelper.getAllRxBytesWifi();
-        NetworkStatsManagerAllTx.setText(mobileWifiTx + " B");
+        networkStatsManagerAllTx.setText(mobileWifiTx + " B");
     }
 
     @TargetApi(Build.VERSION_CODES.M)
     private void fillNetworkStatsPackage(int uid, NetworkStatsHelper networkStatsHelper) {
         long mobileWifiRx = networkStatsHelper.getPackageRxBytesMobile(this) + networkStatsHelper.getPackageRxBytesWifi();
-        NetworkStatsManagerPackageRx.setText(mobileWifiRx + " B");
+        networkStatsManagerPackageRx.setText(mobileWifiRx + " B");
         long mobileWifiTx = networkStatsHelper.getPackageRxBytesMobile(this) + networkStatsHelper.getPackageRxBytesWifi();
-        NetworkStatsManagerPackageTx.setText(mobileWifiTx + " B");
+        networkStatsManagerPackageTx.setText(mobileWifiTx + " B");
     }
 
     private void fillTrafficStatsAll() {
-        TrafficStatsAllRx.setText(TrafficStatsHelper.getAllRxBytes() + " B");
-        TrafficStatsAllTx.setText(TrafficStatsHelper.getAllTxBytes() + " B");
+        trafficStatsAllRx.setText(TrafficStatsHelper.getAllRxBytes() + " B");
+        trafficStatsAllTx.setText(TrafficStatsHelper.getAllTxBytes() + " B");
     }
 
     private void fillTrafficStatsPackage(int uid) {
-        TrafficStatsPackageRx.setText(TrafficStatsHelper.getPackageRxBytes(uid) + " B");
-        TrafficStatsPackageTx.setText(TrafficStatsHelper.getPackageTxBytes(uid) + " B");
+        trafficStatsPackageRx.setText(TrafficStatsHelper.getPackageRxBytes(uid) + " B");
+        trafficStatsPackageTx.setText(TrafficStatsHelper.getPackageTxBytes(uid) + " B");
     }
 
     private boolean hasPermissionToReadPhoneStats() {

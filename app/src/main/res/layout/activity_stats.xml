@@ -74,7 +74,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="20dp"
                 android:layout_toLeftOf="@id/divider"
                 android:gravity="center_horizontal"
                 android:minLines="2"
@@ -88,23 +87,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="20dp"
                 android:layout_toRightOf="@id/divider"
                 android:gravity="center_horizontal"
                 android:minLines="2"
                 android:padding="8dp"
                 android:text="Network Stats Manager"/>
-
-            <TextView
-                android:id="@+id/network_stats_manager_all_Rx_title"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/textView2"
-                android:layout_toRightOf="@id/divider"
-                android:padding="8dp"
-                android:text="Rx"/>
 
             <TextView
                 android:id="@+id/traffic_stats_all_Rx_title"
@@ -118,7 +105,31 @@
                 android:text="Rx"/>
 
             <TextView
-                android:id="@+id/traffic_stats_all_rx"
+                android:id="@+id/network_stats_package_data_title"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/traffic_stats_all_tx_value"
+                android:layout_toEndOf="@+id/traffic_stats_all_tx_value"
+                android:layout_toRightOf="@+id/traffic_stats_all_tx_value"
+                android:padding="8dp"
+                android:text="Package data:"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/network_stats_manager_all_Rx_title"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/textView2"
+                android:layout_toRightOf="@id/divider"
+                android:padding="8dp"
+                android:text="Rx"/>
+
+
+            <TextView
+                android:id="@+id/traffic_stats_all_rx_value"
                 style="@style/TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -129,7 +140,7 @@
                 android:text="All uid"/>
 
             <TextView
-                android:id="@+id/network_stats_manager_all_rx"
+                android:id="@+id/network_stats_all_rx_value"
                 style="@style/TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -140,177 +151,147 @@
                 android:text="Not implemented"/>
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/traffic_stats_all_tx_title"
                 style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/traffic_stats_all_rx"
+                android:layout_below="@+id/traffic_stats_all_rx_value"
                 android:layout_toLeftOf="@+id/divider"
                 android:layout_toStartOf="@+id/divider"
                 android:padding="8dp"
                 android:text="Tx"/>
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/network_stats_all_tx_title"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/network_stats_all_rx_value"
+                android:layout_toEndOf="@+id/divider"
+                android:layout_toRightOf="@+id/divider"
+                android:padding="8dp"
+                android:text="Tx"/>
+
+            <TextView
+                android:id="@+id/traffic_stats_all_tx_value"
                 style="@style/TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/textView"
+                android:layout_below="@+id/traffic_stats_all_tx_title"
                 android:layout_toLeftOf="@+id/divider"
                 android:padding="8dp"
                 android:text="All uid"/>
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/network_stats_all_tx_value"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/network_stats_all_tx_title"
+                android:layout_toRightOf="@+id/divider"
+                android:padding="8dp"
+                android:text="Not implemented"/>
+
+            <TextView
+                android:id="@+id/traffic_stats_package_data_title"
                 style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/network_stats_manager_all_rx"
-                android:layout_toEndOf="@+id/divider"
-                android:layout_toRightOf="@+id/divider"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/traffic_stats_all_tx_value"
+                android:padding="8dp"
+                android:text="Package data:"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/traffic_stats_package_rx_title"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/traffic_stats_package_data_title"
+                android:padding="8dp"
+                android:text="Rx"/>
+
+            <TextView
+                android:id="@+id/traffic_stats_package_rx_value"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/traffic_stats_package_rx_title"
+                android:padding="8dp"
+                android:text="Not implemented"/>
+
+            <TextView
+                android:id="@+id/traffic_stats_package_tx_title"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/traffic_stats_package_rx_value"
                 android:padding="8dp"
                 android:text="Tx"/>
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/traffic_stats_package_tx_value"
                 style="@style/TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textView5"
-                android:layout_toRightOf="@+id/divider"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/traffic_stats_package_tx_title"
                 android:padding="8dp"
                 android:text="Not implemented"/>
 
             <TextView
-                android:id="@+id/textView7"
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView8"
-                android:layout_toRightOf="@+id/divider"
-                android:padding="8dp"
-                android:text="Not implemented"/>
-
-            <TextView
-                android:id="@+id/textView8"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView6"
-                android:layout_toRightOf="@+id/divider"
-                android:padding="8dp"
-                android:text="Package uid"/>
-
-            <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/network_stats_package_rx_title"
                 style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/divider"
                 android:layout_alignStart="@+id/divider"
-                android:layout_below="@+id/textView7"
+                android:layout_below="@+id/network_stats_package_data_title"
                 android:padding="8dp"
                 android:text="Rx"/>
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/network_stats_package_rx_value"
                 style="@style/TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/divider"
-                android:layout_below="@+id/textView9"
+                android:layout_below="@+id/network_stats_package_rx_title"
                 android:padding="8dp"
                 android:text="Not implemented"/>
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/network_stats_package_tx_title"
                 style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView10"
-                android:layout_alignStart="@+id/textView10"
-                android:layout_below="@+id/textView10"
+                android:layout_alignLeft="@+id/network_stats_package_rx_value"
+                android:layout_alignStart="@+id/network_stats_package_rx_value"
+                android:layout_below="@+id/network_stats_package_rx_value"
                 android:padding="8dp"
                 android:text="Tx"/>
 
             <TextView
-                android:id="@+id/textView13"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/textView3"
-                android:padding="8dp"
-                android:text="Package uid"/>
-
-            <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/network_stats_package_tx_value"
                 style="@style/TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/textView13"
-                android:padding="8dp"
-                android:text="Not implemented"/>
-
-            <TextView
-                android:id="@+id/textView15"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/textView14"
-                android:padding="8dp"
-                android:text="Rx"/>
-
-            <TextView
-                android:id="@+id/textView16"
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/textView15"
-                android:padding="8dp"
-                android:text="Not implemented"/>
-
-            <TextView
-                android:id="@+id/textView17"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/textView16"
-                android:padding="8dp"
-                android:text="Tx"/>
-
-            <TextView
-                android:id="@+id/textView18"
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/textView17"
-                android:padding="8dp"
-                android:text="Not implemented"/>
-
-            <TextView
-                android:id="@+id/textView19"
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView12"
+                android:layout_below="@+id/network_stats_package_tx_title"
                 android:layout_toEndOf="@+id/divider"
                 android:layout_toRightOf="@+id/divider"
                 android:padding="8dp"
                 android:text="Not implemented"/>
-
         </RelativeLayout>
 
     </android.support.v4.widget.NestedScrollView>
