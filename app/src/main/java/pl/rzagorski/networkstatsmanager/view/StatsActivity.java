@@ -34,10 +34,10 @@ public class StatsActivity extends AppCompatActivity {
     TextView trafficStatsPackageRx;
     TextView trafficStatsPackageTx;
 
-    TextView networkStatsManagerAllRx;
-    TextView networkStatsManagerAllTx;
-    TextView networkStatsManagerPackageRx;
-    TextView networkStatsManagerPackageTx;
+    TextView networkStatsAllRx;
+    TextView networkStatsAllTx;
+    TextView networkStatsPackageRx;
+    TextView networkStatsPackageTx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +110,6 @@ public class StatsActivity extends AppCompatActivity {
         }
         if (!hasPermissionToReadPhoneStats()) {
             requestPhoneStateStats();
-            return;
         }
     }
 
@@ -123,10 +122,10 @@ public class StatsActivity extends AppCompatActivity {
         trafficStatsAllTx = (TextView) findViewById(R.id.traffic_stats_all_tx_value);
         trafficStatsPackageRx = (TextView) findViewById(R.id.traffic_stats_package_rx_value);
         trafficStatsPackageTx = (TextView) findViewById(R.id.traffic_stats_package_tx_value);
-        networkStatsManagerAllRx = (TextView) findViewById(R.id.network_stats_all_rx_value);
-        networkStatsManagerAllTx = (TextView) findViewById(R.id.network_stats_all_tx_value);
-        networkStatsManagerPackageRx = (TextView) findViewById(R.id.network_stats_package_rx_value);
-        networkStatsManagerPackageTx = (TextView) findViewById(R.id.network_stats_package_tx_value);
+        networkStatsAllRx = (TextView) findViewById(R.id.network_stats_all_rx_value);
+        networkStatsAllTx = (TextView) findViewById(R.id.network_stats_all_tx_value);
+        networkStatsPackageRx = (TextView) findViewById(R.id.network_stats_package_rx_value);
+        networkStatsPackageTx = (TextView) findViewById(R.id.network_stats_package_tx_value);
     }
 
     private void fillData(String packageName) {
@@ -144,17 +143,17 @@ public class StatsActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.M)
     private void fillNetworkStatsAll(NetworkStatsHelper networkStatsHelper) {
         long mobileWifiRx = networkStatsHelper.getAllRxBytesMobile(this) + networkStatsHelper.getAllRxBytesWifi();
-        networkStatsManagerAllRx.setText(mobileWifiRx + " B");
+        networkStatsAllRx.setText(mobileWifiRx + " B");
         long mobileWifiTx = networkStatsHelper.getAllRxBytesMobile(this) + networkStatsHelper.getAllRxBytesWifi();
-        networkStatsManagerAllTx.setText(mobileWifiTx + " B");
+        networkStatsAllTx.setText(mobileWifiTx + " B");
     }
 
     @TargetApi(Build.VERSION_CODES.M)
     private void fillNetworkStatsPackage(int uid, NetworkStatsHelper networkStatsHelper) {
         long mobileWifiRx = networkStatsHelper.getPackageRxBytesMobile(this) + networkStatsHelper.getPackageRxBytesWifi();
-        networkStatsManagerPackageRx.setText(mobileWifiRx + " B");
-        long mobileWifiTx = networkStatsHelper.getPackageRxBytesMobile(this) + networkStatsHelper.getPackageRxBytesWifi();
-        networkStatsManagerPackageTx.setText(mobileWifiTx + " B");
+        networkStatsPackageRx.setText(mobileWifiRx + " B");
+        long mobileWifiTx = networkStatsHelper.getPackageTxBytesMobile(this) + networkStatsHelper.getPackageTxBytesWifi();
+        networkStatsPackageTx.setText(mobileWifiTx + " B");
     }
 
     private void fillTrafficStatsAll() {
@@ -213,6 +212,7 @@ public class StatsActivity extends AppCompatActivity {
         return false;
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void requestReadNetworkHistoryAccess() {
         Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
         startActivity(intent);
