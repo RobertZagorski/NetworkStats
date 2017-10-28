@@ -144,7 +144,7 @@ public class StatsActivity extends AppCompatActivity {
     private void fillNetworkStatsAll(NetworkStatsHelper networkStatsHelper) {
         long mobileWifiRx = networkStatsHelper.getAllRxBytesMobile(this) + networkStatsHelper.getAllRxBytesWifi();
         networkStatsAllRx.setText(mobileWifiRx + " B");
-        long mobileWifiTx = networkStatsHelper.getAllRxBytesMobile(this) + networkStatsHelper.getAllRxBytesWifi();
+        long mobileWifiTx = networkStatsHelper.getAllTxBytesMobile(this) + networkStatsHelper.getAllTxBytesWifi();
         networkStatsAllTx.setText(mobileWifiTx + " B");
     }
 
