@@ -91,10 +91,15 @@ public class NetworkStatsHelper {
         } catch (RemoteException e) {
             return -1;
         }
+
+        long rxBytes = 0L;
         NetworkStats.Bucket bucket = new NetworkStats.Bucket();
-        networkStats.getNextBucket(bucket);
-        networkStats.getNextBucket(bucket);
-        return bucket.getRxBytes();
+        while (networkStats.hasNextBucket()) {
+            networkStats.getNextBucket(bucket);
+            rxBytes += bucket.getRxBytes();
+        }
+        networkStats.close();
+        return rxBytes;
     }
 
     public long getPackageTxBytesMobile(Context context) {
@@ -109,9 +114,15 @@ public class NetworkStatsHelper {
         } catch (RemoteException e) {
             return -1;
         }
+
+        long txBytes = 0L;
         NetworkStats.Bucket bucket = new NetworkStats.Bucket();
-        networkStats.getNextBucket(bucket);
-        return bucket.getTxBytes();
+        while (networkStats.hasNextBucket()) {
+            networkStats.getNextBucket(bucket);
+            txBytes += bucket.getTxBytes();
+        }
+        networkStats.close();
+        return txBytes;
     }
 
     public long getPackageRxBytesWifi() {
@@ -126,9 +137,15 @@ public class NetworkStatsHelper {
         } catch (RemoteException e) {
             return -1;
         }
+
+        long rxBytes = 0L;
         NetworkStats.Bucket bucket = new NetworkStats.Bucket();
-        networkStats.getNextBucket(bucket);
-        return bucket.getRxBytes();
+        while (networkStats.hasNextBucket()) {
+            networkStats.getNextBucket(bucket);
+            rxBytes += bucket.getRxBytes();
+        }
+        networkStats.close();
+        return rxBytes;
     }
 
     public long getPackageTxBytesWifi() {
@@ -143,9 +160,15 @@ public class NetworkStatsHelper {
         } catch (RemoteException e) {
             return -1;
         }
+
+        long txBytes = 0L;
         NetworkStats.Bucket bucket = new NetworkStats.Bucket();
-        networkStats.getNextBucket(bucket);
-        return bucket.getTxBytes();
+        while (networkStats.hasNextBucket()) {
+            networkStats.getNextBucket(bucket);
+            txBytes += bucket.getTxBytes();
+        }
+        networkStats.close();
+        return txBytes;
     }
 
     private String getSubscriberId(Context context, int networkType) {

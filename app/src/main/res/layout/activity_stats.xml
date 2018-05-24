@@ -30,9 +30,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.7"/>
+                android:layout_marginBottom="56dp"
+                app:layout_collapseParallaxMultiplier="0.7" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -41,7 +42,7 @@
                 android:layout_alignBottom="@+id/avatar"
                 android:layout_gravity="bottom"
                 app:layout_collapseMode="pin"
-                app:title="@string/app_name"/>
+                app:title="@string/app_name" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -65,7 +66,7 @@
                 android:layout_width="1px"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
-                android:background="@android:color/black"/>
+                android:background="@android:color/black" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -78,7 +79,7 @@
                 android:gravity="center_horizontal"
                 android:minLines="2"
                 android:padding="8dp"
-                android:text="TrafficStats"/>
+                android:text="TrafficStats" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -91,7 +92,7 @@
                 android:gravity="center_horizontal"
                 android:minLines="2"
                 android:padding="8dp"
-                android:text="Network Stats Manager"/>
+                android:text="Network Stats Manager" />
 
             <TextView
                 android:id="@+id/traffic_stats_all_Rx_title"
@@ -102,7 +103,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/textView4"
                 android:padding="8dp"
-                android:text="Rx"/>
+                android:text="Rx" />
 
             <TextView
                 android:id="@+id/network_stats_package_data_title"
@@ -114,7 +115,7 @@
                 android:layout_toRightOf="@+id/traffic_stats_all_tx_value"
                 android:padding="8dp"
                 android:text="Package data:"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/network_stats_manager_all_Rx_title"
@@ -125,7 +126,7 @@
                 android:layout_below="@id/textView2"
                 android:layout_toRightOf="@id/divider"
                 android:padding="8dp"
-                android:text="Rx"/>
+                android:text="Rx" />
 
 
             <TextView
@@ -134,10 +135,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@id/traffic_stats_all_Rx_title"
-                android:layout_toLeftOf="@id/divider"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/traffic_stats_all_Rx_title"
                 android:padding="8dp"
-                android:text="All uid"/>
+                android:text="All uid" />
 
             <TextView
                 android:id="@+id/network_stats_all_rx_value"
@@ -148,7 +149,7 @@
                 android:layout_below="@id/network_stats_manager_all_Rx_title"
                 android:layout_toRightOf="@id/divider"
                 android:padding="8dp"
-                android:text="Not implemented"/>
+                android:text="Not implemented" />
 
             <TextView
                 android:id="@+id/traffic_stats_all_tx_title"
@@ -161,7 +162,7 @@
                 android:layout_toLeftOf="@+id/divider"
                 android:layout_toStartOf="@+id/divider"
                 android:padding="8dp"
-                android:text="Tx"/>
+                android:text="Tx" />
 
             <TextView
                 android:id="@+id/network_stats_all_tx_title"
@@ -172,7 +173,7 @@
                 android:layout_toEndOf="@+id/divider"
                 android:layout_toRightOf="@+id/divider"
                 android:padding="8dp"
-                android:text="Tx"/>
+                android:text="Tx" />
 
             <TextView
                 android:id="@+id/traffic_stats_all_tx_value"
@@ -184,7 +185,7 @@
                 android:layout_below="@+id/traffic_stats_all_tx_title"
                 android:layout_toLeftOf="@+id/divider"
                 android:padding="8dp"
-                android:text="All uid"/>
+                android:text="All uid" />
 
             <TextView
                 android:id="@+id/network_stats_all_tx_value"
@@ -194,7 +195,7 @@
                 android:layout_below="@+id/network_stats_all_tx_title"
                 android:layout_toRightOf="@+id/divider"
                 android:padding="8dp"
-                android:text="Not implemented"/>
+                android:text="Not implemented" />
 
             <TextView
                 android:id="@+id/traffic_stats_package_data_title"
@@ -206,7 +207,7 @@
                 android:layout_below="@+id/traffic_stats_all_tx_value"
                 android:padding="8dp"
                 android:text="Package data:"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/traffic_stats_package_rx_title"
@@ -216,7 +217,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/traffic_stats_package_data_title"
                 android:padding="8dp"
-                android:text="Rx"/>
+                android:text="Rx" />
 
             <TextView
                 android:id="@+id/traffic_stats_package_rx_value"
@@ -226,7 +227,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/traffic_stats_package_rx_title"
                 android:padding="8dp"
-                android:text="Not implemented"/>
+                android:text="Not implemented" />
 
             <TextView
                 android:id="@+id/traffic_stats_package_tx_title"
@@ -237,7 +238,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/traffic_stats_package_rx_value"
                 android:padding="8dp"
-                android:text="Tx"/>
+                android:text="Tx" />
 
             <TextView
                 android:id="@+id/traffic_stats_package_tx_value"
@@ -248,7 +249,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/traffic_stats_package_tx_title"
                 android:padding="8dp"
-                android:text="Not implemented"/>
+                android:text="Not implemented" />
 
             <TextView
                 android:id="@+id/network_stats_package_rx_title"
@@ -259,7 +260,7 @@
                 android:layout_alignStart="@+id/divider"
                 android:layout_below="@+id/network_stats_package_data_title"
                 android:padding="8dp"
-                android:text="Rx"/>
+                android:text="Rx" />
 
             <TextView
                 android:id="@+id/network_stats_package_rx_value"
@@ -269,7 +270,7 @@
                 android:layout_alignLeft="@+id/divider"
                 android:layout_below="@+id/network_stats_package_rx_title"
                 android:padding="8dp"
-                android:text="Not implemented"/>
+                android:text="Not implemented" />
 
             <TextView
                 android:id="@+id/network_stats_package_tx_title"
@@ -280,7 +281,7 @@
                 android:layout_alignStart="@+id/network_stats_package_rx_value"
                 android:layout_below="@+id/network_stats_package_rx_value"
                 android:padding="8dp"
-                android:text="Tx"/>
+                android:text="Tx" />
 
             <TextView
                 android:id="@+id/network_stats_package_tx_value"
@@ -291,7 +292,7 @@
                 android:layout_toEndOf="@+id/divider"
                 android:layout_toRightOf="@+id/divider"
                 android:padding="8dp"
-                android:text="Not implemented"/>
+                android:text="Not implemented" />
         </RelativeLayout>
 
     </android.support.v4.widget.NestedScrollView>
