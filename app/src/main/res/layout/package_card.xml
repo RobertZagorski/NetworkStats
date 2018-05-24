@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="4dp"
     app:cardElevation="4dp"
-    app:cardUseCompatPadding="true"
-    app:contentPadding="8dp">
+    app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp">
 
         <TextView
             android:id="@+id/name"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/icon"
+            android:layout_toStartOf="@+id/icon"
             android:paddingBottom="8dp"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
             android:paddingTop="8dp"
-            tools:text="Package name"/>
+            tools:text="Package name" />
 
         <TextView
             android:id="@+id/package_name"
@@ -31,8 +34,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/name"
+            android:layout_toLeftOf="@+id/icon"
+            android:layout_toStartOf="@+id/icon"
+            android:ellipsize="start"
+            android:lines="1"
             android:padding="4dp"
-            tools:text="pl.rzagorski.networkstatsmamanger"/>
+            tools:text="pl.rzagorski.networkstatsmamanger" />
 
         <TextView
             android:id="@+id/version"
@@ -40,8 +47,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/package_name"
+            android:layout_toLeftOf="@+id/icon"
+            android:layout_toStartOf="@+id/icon"
             android:padding="4dp"
-            tools:text="1.0.0"/>
+            tools:text="1.0.0" />
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/icon"
@@ -49,7 +58,8 @@
             android:layout_height="72dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:padding="8dp"/>
+            android:layout_centerVertical="true"
+            android:padding="8dp" />
 
     </RelativeLayout>
 

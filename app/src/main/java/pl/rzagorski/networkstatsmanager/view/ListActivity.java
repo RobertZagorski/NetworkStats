@@ -1,5 +1,6 @@
 package pl.rzagorski.networkstatsmanager.view;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -12,6 +13,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import pl.rzagorski.networkstatsmanager.R;
@@ -19,10 +22,11 @@ import pl.rzagorski.networkstatsmanager.model.Package;
 import pl.rzagorski.networkstatsmanager.utils.OnPackageClickListener;
 
 /**
- * Created by Robert Zagórski on 2016-12-14.
+ * Created by Robert Zagórski on 2016-12-14
  */
 
 public class ListActivity extends AppCompatActivity implements OnPackageClickListener {
+
     RecyclerView recyclerView;
 
     @Override
@@ -39,8 +43,18 @@ public class ListActivity extends AppCompatActivity implements OnPackageClickLis
     private List<Package> getPackagesData() {
         PackageManager packageManager = getPackageManager();
         List<PackageInfo> packageInfoList = packageManager.getInstalledPackages(PackageManager.GET_META_DATA);
+        Collections.sort(packageInfoList, new Comparator<PackageInfo>() {
+            @Override
+            public int compare(PackageInfo o1, PackageInfo o2) {
+                return (int) ((o2.lastUpdateTime - o1.lastUpdateTime) / 10);
+            }
+        });
         List<Package> packageList = new ArrayList<>(packageInfoList.size());
         for (PackageInfo packageInfo : packageInfoList) {
+            if (packageManager.checkPermission(Manifest.permission.INTERNET,
+                    packageInfo.packageName) == PackageManager.PERMISSION_DENIED) {
+                continue;
+            }
             Package packageItem = new Package();
             packageItem.setVersion(packageInfo.versionName);
             packageItem.setPackageName(packageInfo.packageName);
@@ -68,4 +82,5 @@ public class ListActivity extends AppCompatActivity implements OnPackageClickLis
         intent.putExtra(StatsActivity.EXTRA_PACKAGE, packageItem.getPackageName());
         startActivity(intent);
     }
+
 }
